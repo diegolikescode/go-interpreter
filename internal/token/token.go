@@ -3,6 +3,7 @@ package token
 type TokenType string
 
 const (
+	// specials
 	ILLEGAL = "ILLEGAL"
 	EOF     = "EOF"
 
@@ -36,4 +37,12 @@ var keywords = map[string]TokenType{
 type Token struct {
 	Type    TokenType
 	Literal string
+}
+
+func LookupIdent(ident string) TokenType {
+	if tok, exists := keywords[ident]; exists {
+		return tok
+	} else {
+		return IDENT
+	}
 }
