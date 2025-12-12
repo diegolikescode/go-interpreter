@@ -8,7 +8,7 @@ type Node interface {
 
 type Statement interface {
 	Node
-	statementNode() string
+	statementNode()
 }
 
 type Expression interface {
@@ -34,13 +34,21 @@ type LetStatement struct {
 	Value Expression
 }
 
-func (ls *LetStatement) statementNode() string { return "" }
-func (ls *LetStatement) TokenLiteral() string  { return ls.Token.Literal }
+func (ls *LetStatement) statementNode()       {}
+func (ls *LetStatement) TokenLiteral() string { return ls.Token.Literal }
 
 type Identifier struct {
 	Token token.Token
 	Value string
 }
 
-func (i *Identifier) expressionNode() string { return "" }
-func (i *Identifier) TokenLiteral() string   { return i.Token.Literal }
+func (i *Identifier) expressionNode()      {}
+func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
+
+type ReturnStatement struct {
+	Token token.Token
+	Value Expression
+}
+
+func (ls *ReturnStatement) statementNode()       {}
+func (ls *ReturnStatement) TokenLiteral() string { return ls.Token.Literal }
